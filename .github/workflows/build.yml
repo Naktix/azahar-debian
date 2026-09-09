@@ -15,6 +15,9 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    container:
+      image: debian:trixie
+
     steps:
       - name: checkout packaging repository
         uses: actions/checkout@v4
@@ -22,16 +25,19 @@ jobs:
       - name: determine latest stable azahar release
         id: release
         run: |
+          apt-get update
+          apt-get install -y curl jq
+
           echo "tag=$(curl -fsSL https://api.github.com/repos/azahar-emu/azahar/releases/latest | jq -r '.tag_name')" >> "$GITHUB_OUTPUT"
 
-      - name: check version
-        run: |
-          [ "$(curl -fsSL https://naktix.github.io/azahar-debian/dists/trixie/main/binary-amd64/Packages 2>/dev/null | grep -A1 '^Package: azahar$' | grep '^Version:' | cut -d' ' -f2)" != "${{ steps.release.outputs.tag }}-1" ]
+      # - name: check version
+      #   run: |
+      #     [ "$(curl -fsSL https://naktix.github.io/azahar-debian/dists/trixie/main/binary-amd64/Packages 2>/dev/null | grep -A1 '^Package: azahar$' | grep '^Version:' | cut -d' ' -f2)" != "${{ steps.release.outputs.tag }}-1" ]
 
       - name: install build dependencies
         run: |
-          sudo apt-get update
-          sudo apt-get install -y \
+          apt-get update
+          apt-get install -y \
             build-essential \
             clang \
             clang-format \
@@ -80,7 +86,8 @@ jobs:
       - name: import repository signing key
         env:
           GPG_PRIVATE_KEY: ${{ secrets.GPG_PRIVATE_KEY }}
-        run: echo "$GPG_PRIVATE_KEY" | gpg --batch --import
+        run: |
+          echo "$GPG_PRIVATE_KEY" | gpg --batch --import
 
       - name: build apt repository
         env:
