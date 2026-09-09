@@ -1,12 +1,10 @@
 # Azahar for Debian
 
-Unofficial APT repository for [Azahar](https://github.com/azahar-emu/azahar).
-
-This repository builds Azahar as a native `.deb` package for **Debian 13 (Trixie)** and publishes the package through a signed APT repository hosted on GitHub Pages.
+This repository builds [Azahar](https://github.com/azahar-emu/azahar) as a native `.deb` package and publishes it on GitHub Pages.
 
 ## How to install
 
-Add the repository signing key and apt repository:
+Add the signing key and repository:
 
 ```bash
 curl -fsSL https://naktix.github.io/azahar-debian/azahar.gpg | sudo tee /etc/apt/keyrings/azahar.gpg > /dev/null
@@ -34,7 +32,7 @@ Remove Azahar:
 sudo apt remove azahar
 ```
 
-Remove the apt repository and repository signing key:
+Remove the repository and signing key:
 
 ```bash
 sudo rm /etc/apt/sources.list.d/azahar.list
@@ -47,3 +45,5 @@ Update the package lists:
 ```bash
 sudo apt update
 ```
+
+> **Disclaimer:** This is an unofficial repository and is not affiliated with, endorsed by, or officially supported by the Azahar Emulator Project.
