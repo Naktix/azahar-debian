@@ -1,0 +1,36 @@
+Source: azahar
+Section: games
+Priority: optional
+Maintainer: Nils Brockelmann
+Build-Depends:
+ debhelper-compat (= 13),
+ build-essential,
+ clang,
+ clang-format,
+ cmake,
+ jackd,
+ libasound-dev,
+ libgl-dev,
+ libpipewire-0.3-dev,
+ libsndio-dev,
+ libssl-dev,
+ libsdl2-dev,
+ libx11-dev,
+ libxext-dev,
+ qt6-base-dev,
+ qt6-base-private-dev,
+ qt6-l10n-tools,
+ qt6-multimedia-dev,
+ qt6-tools-dev,
+ qt6-tools-dev-tools,
+ xorg-dev
+Standards-Version: 4.7.0
+Homepage: https://github.com/azahar-emu/azahar
+
+Package: azahar
+Architecture: amd64
+Depends:
+ ${shlibs:Depends},
+ ${misc:Depends}
+Description: Nintendo 3DS emulator
+ Azahar is an open-source Nintendo 3DS emulator.

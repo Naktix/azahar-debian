@@ -1,0 +1,7 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: Azahar
+Source: https://github.com/azahar-emu/azahar
+
+Files: *
+Copyright: 2014-2026 Citra Emulator Project / Azahar Emulator Project
+License: GPL-2+
