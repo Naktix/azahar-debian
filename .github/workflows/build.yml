@@ -26,13 +26,15 @@ jobs:
         id: release
         run: |
           apt-get update
-          apt-get install -y curl jq
+          apt-get install -y \
+          curl \
+          jq
 
           echo "tag=$(curl -fsSL https://api.github.com/repos/azahar-emu/azahar/releases/latest | jq -r '.tag_name')" >> "$GITHUB_OUTPUT"
 
-      # - name: check version
-      #   run: |
-      #     [ "$(curl -fsSL https://naktix.github.io/azahar-debian/dists/trixie/main/binary-amd64/Packages 2>/dev/null | grep -A1 '^Package: azahar$' | grep '^Version:' | cut -d' ' -f2)" != "${{ steps.release.outputs.tag }}-1" ]
+      - name: check version
+        run: |
+          [ "$(curl -fsSL https://naktix.github.io/azahar-debian/dists/trixie/main/binary-amd64/Packages 2>/dev/null | grep -A1 '^Package: azahar$' | grep '^Version:' | cut -d' ' -f2)" != "${{ steps.release.outputs.tag }}-1" ]
 
       - name: install build dependencies
         run: |

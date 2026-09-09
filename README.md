@@ -1,6 +1,6 @@
 # Azahar for Debian
 
-This repository builds [Azahar](https://github.com/azahar-emu/azahar) as a native `.deb` package and publishes it on GitHub Pages.
+This repository builds [Azahar](https://github.com/azahar-emu/azahar) as a native .deb package and publishes it on GitHub Pages.
 
 ## How to install
 
