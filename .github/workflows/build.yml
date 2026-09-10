@@ -34,7 +34,7 @@ jobs:
 
       - name: check version
         run: |
-          [ "$(curl -fsSL https://naktix.github.io/azahar-debian/dists/trixie/main/binary-amd64/Packages 2>/dev/null | grep -A1 '^Package: azahar$' | grep '^Version:' | cut -d' ' -f2)" != "${{ steps.release.outputs.tag }}-1" ]
+          [ "$(curl -fsSL https://naktix.github.io/azahar-debian/dists/trixie/main/binary-amd64/Packages 2>/dev/null | sed -n '/^Package: azahar$/,/^$/p' | grep -m1 '^Version:' | cut -d' ' -f2)" != "${{ steps.release.outputs.tag }}-1" ]
 
       - name: install build dependencies
         run: |
